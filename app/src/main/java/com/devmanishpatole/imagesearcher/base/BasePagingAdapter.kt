@@ -21,9 +21,11 @@ abstract class BasePagingAdapter<T : Any, VH : BaseItemViewHolder<T, out BaseIte
                 recyclerView?.run {
                     for (i in 0 until childCount) {
                         getChildAt(i)?.let {
-                            (getChildViewHolder(it) as BaseItemViewHolder<*, *>).run {
-                                onDestroy()
-                                viewModel.onManualClear()
+                            if (getChildViewHolder(it) is BaseItemViewHolder<*, *>) {
+                                (getChildViewHolder(it) as BaseItemViewHolder<*, *>).run {
+                                    onDestroy()
+                                    viewModel.onManualClear()
+                                }
                             }
                         }
                     }
@@ -35,7 +37,9 @@ abstract class BasePagingAdapter<T : Any, VH : BaseItemViewHolder<T, out BaseIte
                 recyclerView?.run {
                     for (i in 0 until childCount) {
                         getChildAt(i)?.let {
-                            (getChildViewHolder(it) as BaseItemViewHolder<*, *>).onStop()
+                            if (getChildViewHolder(it) is BaseItemViewHolder<*, *>) {
+                                (getChildViewHolder(it) as BaseItemViewHolder<*, *>).onStop()
+                            }
                         }
                     }
                 }
@@ -52,7 +56,9 @@ abstract class BasePagingAdapter<T : Any, VH : BaseItemViewHolder<T, out BaseIte
                         if (first in 0..last) {
                             for (i in first..last) {
                                 findViewHolderForAdapterPosition(i)?.let {
-                                    (it as BaseItemViewHolder<*, *>).onStart()
+                                    if (it is BaseItemViewHolder<*, *>) {
+                                        it.onStart()
+                                    }
                                 }
                             }
                         }
