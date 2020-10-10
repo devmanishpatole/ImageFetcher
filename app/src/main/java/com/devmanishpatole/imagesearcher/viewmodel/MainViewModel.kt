@@ -5,21 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.devmanishpatole.imagesearcher.base.BaseViewModel
 import com.devmanishpatole.imagesearcher.data.Section
+import com.devmanishpatole.imagesearcher.data.ViralSelection
 
 class MainViewModel @ViewModelInject constructor() : BaseViewModel() {
 
     private val _showCategories = MutableLiveData<Boolean>()
     val showCategories: LiveData<Boolean> = _showCategories
 
-    private val _viral = MutableLiveData<Boolean>()
-    val viral: LiveData<Boolean> = _viral
-
-    private val _section = MutableLiveData<Section>()
-    val section: LiveData<Section> = _section
+    private val _viral = MutableLiveData<ViralSelection>()
+    val viral: LiveData<ViralSelection> = _viral
 
     fun showCategories(show: Boolean) = _showCategories.postValue(show)
 
-    fun setupSection(section: Section) = _section.postValue(section)
-
-    fun setViral(viral: Boolean) = _viral.postValue(viral)
+    fun setViral(viral: ViralSelection) = _viral.postValue(viral)
 }

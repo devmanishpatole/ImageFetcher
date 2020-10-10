@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
+import androidx.paging.filter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.devmanishpatole.imagesearcher.R
 import com.devmanishpatole.imagesearcher.adapter.GalleryAdapter
@@ -15,6 +16,7 @@ import com.devmanishpatole.imagesearcher.adapter.GalleryLoadStateAdapter
 import com.devmanishpatole.imagesearcher.base.BaseFragment
 import com.devmanishpatole.imagesearcher.data.PhotoRequest
 import com.devmanishpatole.imagesearcher.data.Section
+import com.devmanishpatole.imagesearcher.data.ViralSelection
 import com.devmanishpatole.imagesearcher.exception.NetworkException
 import com.devmanishpatole.imagesearcher.util.hide
 import com.devmanishpatole.imagesearcher.util.show
@@ -33,9 +35,8 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
 
     private val args by navArgs<GalleryFragmentArgs>()
 
-    private var section = Section.UNKNOWN
-    private var viral = false
     private var query = ""
+    private var viralSelection = ViralSelection.ALL
 
     private lateinit var galleryAdapter: GalleryAdapter
 
@@ -48,8 +49,18 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
     override fun getLayoutId() = R.layout.fragment_gallery
 
     override fun setupView(view: View) {
+        mainViewModel.showCategories(true)
+        observeFilterSelection()
+        setupList()
+        addLoadStateChangeListener()
+        showBackButton()
 
-        observeSectionAndViralUpdate()
+        val request = args.request
+        setupTitle(request)
+        searchImages(request.query, request.section, request.includeViral)
+    }
+
+    private fun setupList(){
         galleryAdapter = GalleryAdapter(viewLifecycleOwner.lifecycle)
 
         imageList.layoutManager =
@@ -64,13 +75,15 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
                 )
             }
         }
+    }
 
-        addLoadStateChangeListener()
-        showBackButton()
-
-        val request = args.request
-        setupTitle(request)
-        searchImages(request.query, request.section, request.includeViral)
+    private fun observeFilterSelection() {
+        mainViewModel.viral.observe(viewLifecycleOwner, {
+            if (it != viralSelection) {
+                viralSelection = it
+                galleryAdapter.refresh()
+            }
+        })
     }
 
     private fun setupTitle(request: PhotoRequest) {
@@ -129,65 +142,35 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         }
     }
 
-    private fun observeSectionAndViralUpdate() {
-        mainViewModel.section.observe(viewLifecycleOwner, {
-            section = it
-        })
-
-        mainViewModel.viral.observe(viewLifecycleOwner, {
-            viral = it
-        })
-    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         mainViewModel.showCategories(false)
         outState.putString(QUERY, query)
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        query = savedInstanceState?.getString(QUERY) ?: ""
-
-//        if (query.isNotEmpty()) {
-//            searchImages(query)
-//        }
-    }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.menu_gallery, menu)
-//
-//        val searchItem = menu.findItem(R.id.action_search)
-//        val searchView = searchItem.actionView as SearchView
-//
-//        searchView.setOnQueryTextFocusChangeListener { _, focus ->
-//            mainViewModel.showCategories(focus)
-//        }
-//
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                if (query != null) {
-//                    searchView.clearFocus()
-//                    this@GalleryFragment.query = query
-//                    searchImages(query)
-//                }
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                return true
-//            }
-//        })
-//    }
-
     private fun searchImages(query: String, section: Section, viral: Boolean) {
         imageList.scrollToPosition(0)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchImages(query, section, viral).collectLatest {
-                galleryAdapter.submitData(it)
+                when (viralSelection) {
+                    ViralSelection.ALL -> galleryAdapter.submitData(it)
+                    ViralSelection.VIRAL -> galleryAdapter.submitData(
+                        it.filter { imageData ->
+                            imageData.isViral
+                        })
+                    ViralSelection.NON_VIRAL -> galleryAdapter.submitData(
+                        it.filter { imageData ->
+                            !imageData.isViral
+                        })
+                }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //Hide filter categories
+        mainViewModel.showCategories(false)
     }
 }

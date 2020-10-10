@@ -14,6 +14,7 @@ data class ImageData(
     val ups: Int,
     val downs: Int,
     val score: Int,
+    @SerializedName("in_most_viral") val isViral: Boolean,
     val images: List<Image>?
 ) : Parcelable
 

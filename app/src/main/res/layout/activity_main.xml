@@ -17,6 +17,8 @@
 
         <include layout="@layout/toolbar" />
 
+        <include layout="@layout/categories" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
