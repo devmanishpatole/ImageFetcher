@@ -10,7 +10,17 @@ import com.devmanishpatole.imagesearcher.viewholder.GalleryViewHolder
 class GalleryAdapter(parentLifecycle: Lifecycle) :
     BasePagingAdapter<ImageData, GalleryViewHolder>(parentLifecycle, IMAGE_COMPARATOR) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = GalleryViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        GalleryViewHolder(parent, ::onClick)
+
+    lateinit var onItemClick: (ImageData) -> Unit
+
+    private fun onClick(position: Int) {
+        if (::onItemClick.isInitialized) {
+            val imageData = getItem(position)
+            imageData?.let { onItemClick(it) }
+        }
+    }
 
     companion object {
         private val IMAGE_COMPARATOR = object : DiffUtil.ItemCallback<ImageData>() {

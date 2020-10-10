@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleRegistry
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.devmanishpatole.imagesearcher.R
 import com.devmanishpatole.imagesearcher.base.BaseItemViewHolder
@@ -16,7 +17,7 @@ import dagger.hilt.android.components.FragmentComponent
 import dagger.hilt.android.internal.managers.ViewComponentManager
 import kotlinx.android.synthetic.main.grid_element_layout.view.*
 
-class GalleryViewHolder(parent: ViewGroup) :
+class GalleryViewHolder(parent: ViewGroup, private val onItemClick: (Int) -> Unit) :
     BaseItemViewHolder<ImageData, GalleryItemViewModel>(R.layout.grid_element_layout, parent) {
 
     override lateinit var lifecycleRegistry: LifecycleRegistry
@@ -37,7 +38,13 @@ class GalleryViewHolder(parent: ViewGroup) :
                 scale(coil.size.Scale.FIT)
             }
 
-            imageTitle.text = data.title
+            imageTitle.text = data.isViral.toString()
+
+            itemView.setOnClickListener {
+                if (layoutPosition != RecyclerView.NO_POSITION) {
+                    onItemClick(layoutPosition)
+                }
+            }
         }
 
     }

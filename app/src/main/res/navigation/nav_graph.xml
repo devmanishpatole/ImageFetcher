@@ -23,6 +23,19 @@
         <argument
             android:name="request"
             app:argType="com.devmanishpatole.imagesearcher.data.PhotoRequest" />
+        <action
+            android:id="@+id/action_galleryFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.devmanishpatole.imagesearcher.ui.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="imageData"
+            app:argType="com.devmanishpatole.imagesearcher.data.ImageData" />
     </fragment>
 
 </navigation>

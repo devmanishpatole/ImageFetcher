@@ -12,10 +12,15 @@ class MainViewModel @ViewModelInject constructor() : BaseViewModel() {
     private val _showCategories = MutableLiveData<Boolean>()
     val showCategories: LiveData<Boolean> = _showCategories
 
+    private val _setAppBarExpanded = MutableLiveData<Boolean>()
+    val setAppBarExpanded: LiveData<Boolean> = _setAppBarExpanded
+
     private val _viral = MutableLiveData<ViralSelection>()
     val viral: LiveData<ViralSelection> = _viral
 
     fun showCategories(show: Boolean) = _showCategories.postValue(show)
 
     fun setViral(viral: ViralSelection) = _viral.postValue(viral)
+
+    fun setAppBarExpanded(expanded : Boolean) = _setAppBarExpanded.postValue(expanded)
 }

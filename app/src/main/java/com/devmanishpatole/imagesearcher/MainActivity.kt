@@ -10,6 +10,7 @@ import com.devmanishpatole.imagesearcher.util.show
 import com.devmanishpatole.imagesearcher.viewmodel.MainViewModel
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.categories.*
 
 @AndroidEntryPoint
@@ -26,6 +27,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
             } else {
                 categories.hide()
             }
+        })
+
+        viewModel.setAppBarExpanded.observe(this, { expanded ->
+            appBar.setExpanded(expanded, true)
         })
 
         categoryGroup.setOnCheckedChangeListener { group, id ->
