@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/introductionFragment">
+
+    <fragment
+        android:id="@+id/introductionFragment"
+        android:name="com.devmanishpatole.imagesearcher.ui.IntroductionFragment"
+        android:label="IntroductionFragment">
+        <action
+            android:id="@+id/action_introductionFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment"
+            app:launchSingleTop="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.devmanishpatole.imagesearcher.ui.GalleryFragment"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_gallery">
+        <argument
+            android:name="request"
+            app:argType="com.devmanishpatole.imagesearcher.data.PhotoRequest" />
+    </fragment>
+
+</navigation>

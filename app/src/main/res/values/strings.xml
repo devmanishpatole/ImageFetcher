@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Image Fetcher</string>
+    <string name="hot">Hot</string>
+    <string name="top">Top</string>
+    <string name="top_images">Top Images</string>
+    <string name="user_images">User Images</string>
+    <string name="hot_images">Hot Images</string>
+    <string name="viral">Viral</string>
+    <string name="user">User</string>
+
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="no_image_found">No Images Found!</string>
+    <string name="welcome">Welcome!</string>
+    <string name="welcome_message">Now you can search images using the application and can also include viral images in your search.\nYou can also look for various sections of images!</string>
+    <string name="sections">Sections</string>
+    <string name="include_viral">Include viral images for user section</string>
+</resources>

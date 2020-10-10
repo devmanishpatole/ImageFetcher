@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/searchCategories"
+        style="@style/SectionLayout"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_small"
+        android:visibility="gone"
+        app:layout_scrollFlags="scroll|enterAlways"
+        tools:visibility="visible">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/categoryGroup"
+            style="@style/WrapContentLayout"
+            app:chipSpacing="@dimen/spacing_extra_small"
+            app:singleLine="false"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/hot"
+                style="@style/Widget.MaterialComponents.Chip.Choice.Wrap"
+                android:text="@string/hot" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/top"
+                style="@style/Widget.MaterialComponents.Chip.Choice.Wrap"
+                android:text="@string/top" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/user"
+                style="@style/Widget.MaterialComponents.Chip.Choice.Wrap"
+                android:text="@string/user" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:background="@android:color/darker_gray" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/viral"
+            style="@style/Widget.MaterialComponents.Chip.Filter.Wrap"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/viral"
+            app:checkedIcon="@drawable/ic_viral" />
+
+    </LinearLayout>
+</merge>
