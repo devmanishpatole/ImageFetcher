@@ -130,9 +130,6 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         }
     }
 
-    private fun showBackButton() {
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
 
     private fun addLoadStateChangeListener() {
         galleryAdapter.addLoadStateListener { loadState ->

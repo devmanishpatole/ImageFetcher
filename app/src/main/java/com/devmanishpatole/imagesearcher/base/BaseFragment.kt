@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.devmanishpatole.imagesearcher.R
@@ -56,6 +57,10 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
         errorText.text = text
         showView(errorText)
         hideView(mainViewContainer, progressText, progressbar)
+    }
+
+    fun showBackButton() {
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     protected open fun setupObservers() {

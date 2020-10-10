@@ -23,7 +23,8 @@ class DetailFragment : BaseFragment<DetailViewModel>() {
 
     override fun setupView(view: View) {
         mainViewModel.setAppBarExpanded(true)
-        
+        showBackButton()
+
         val imageData = args.imageData
 
         activity?.title = imageData.title

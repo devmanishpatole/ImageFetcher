@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchParentLayout"
-    android:padding="@dimen/spacing_medium"
     tools:context=".ui.DetailFragment">
 
     <RelativeLayout
         style="@style/MatchParentLayout"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_medium">
 
         <ImageView
             android:id="@+id/detailImage"
