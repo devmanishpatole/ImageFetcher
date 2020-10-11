@@ -27,6 +27,13 @@ class MainActivity : BaseActivity<MainViewModel>() {
     override fun getLayoutId() = R.layout.activity_main
 
     override fun setupView(savedInstanceState: Bundle?) {
+        initObservers()
+        setupNavigationComponent()
+        initFilterClickListener()
+    }
+
+    private fun initObservers() {
+        // Displays search filter categories
         viewModel.showCategories.observe(this, { showCategories ->
             if (showCategories) {
                 categories.show()
@@ -35,10 +42,19 @@ class MainActivity : BaseActivity<MainViewModel>() {
             }
         })
 
+        // Expand toolbar - Needed when displaying detail image.
         viewModel.setAppBarExpanded.observe(this, { expanded ->
             appBar.setExpanded(expanded, true)
         })
 
+        // Resets filter selection to All
+        viewModel.resetViral.observe(this, {
+            all.isChecked = true
+        })
+    }
+
+    private fun initFilterClickListener() {
+        // Listens to category selections and sends category change update.
         categoryGroup.setOnCheckedChangeListener { group, id ->
             val chip = group.findViewById<Chip>(id)
             if (null != chip) {
@@ -51,20 +67,18 @@ class MainActivity : BaseActivity<MainViewModel>() {
                 all.isChecked = true
             }
         }
+    }
 
-        viewModel.resetViral.observe(this, {
-            all.isChecked = true
-        })
-
+    private fun setupNavigationComponent() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostContainer) as NavHostFragment
         navController = navHostFragment.findNavController()
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
     }
 
+    // Support back arrow and navigation
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }

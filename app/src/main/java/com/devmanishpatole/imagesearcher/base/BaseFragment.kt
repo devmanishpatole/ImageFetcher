@@ -59,10 +59,6 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
         hideView(mainViewContainer, progressText, progressbar)
     }
 
-    fun showBackButton() {
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
     protected open fun setupObservers() {
         viewModel.messageString.observe(this, Observer {
             it.data?.run { showMessage(this) }

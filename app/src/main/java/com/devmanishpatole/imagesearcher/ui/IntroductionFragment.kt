@@ -3,7 +3,6 @@ package com.devmanishpatole.imagesearcher.ui
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,10 +10,15 @@ import com.devmanishpatole.imagesearcher.R
 import com.devmanishpatole.imagesearcher.base.BaseFragment
 import com.devmanishpatole.imagesearcher.data.PhotoRequest
 import com.devmanishpatole.imagesearcher.data.Section
+import com.devmanishpatole.imagesearcher.util.navigateWithAnim
 import com.devmanishpatole.imagesearcher.viewmodel.IntroductionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_intoduction.*
 
+/**
+ * Launch fragment display welcome message and provides various options to user to search
+ * or find images under various categories
+ */
 @AndroidEntryPoint
 class IntroductionFragment : BaseFragment<IntroductionViewModel>(), View.OnClickListener {
 
@@ -70,19 +74,13 @@ class IntroductionFragment : BaseFragment<IntroductionViewModel>(), View.OnClick
             }
             else -> null
         }
-        action?.let { findNavController().navigate(it) }
+        action?.let { findNavController().navigateWithAnim(it) }
     }
 
     private fun launchSearchImage(query: String) {
         val action = IntroductionFragmentDirections.actionIntroductionFragmentToGalleryFragment(
             query, PhotoRequest(query)
         )
-        findNavController().navigate(action)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //Hide back arrow
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        findNavController().navigateWithAnim(action)
     }
 }

@@ -16,23 +16,24 @@ import com.devmanishpatole.imagesearcher.base.BaseFragment
 import com.devmanishpatole.imagesearcher.data.PhotoRequest
 import com.devmanishpatole.imagesearcher.data.ViralSelection
 import com.devmanishpatole.imagesearcher.exception.NetworkException
+import com.devmanishpatole.imagesearcher.util.ViewUtil
 import com.devmanishpatole.imagesearcher.util.hide
+import com.devmanishpatole.imagesearcher.util.navigateWithAnim
 import com.devmanishpatole.imagesearcher.util.show
 import com.devmanishpatole.imagesearcher.viewmodel.GalleryViewModel
 import com.devmanishpatole.imagesearcher.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_gallery.*
 
-
+/**
+ * Shows the list of images and filter options to apply filter on result set.
+ */
 @AndroidEntryPoint
 class GalleryFragment : BaseFragment<GalleryViewModel>() {
 
     private val mainViewModel by activityViewModels<MainViewModel>()
-
     private val args by navArgs<GalleryFragmentArgs>()
-
     private var viralSelection = ViralSelection.ALL
-
     private lateinit var galleryAdapter: GalleryAdapter
 
     override val viewModel by viewModels<GalleryViewModel>()
@@ -43,28 +44,30 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         super.onCreate(savedInstanceState)
 
         if (null == savedInstanceState) {
+            // Resets filter to all
             mainViewModel.resetViralSelection()
 
-            val request = args.request
-            viewModel.searchImages(
-                PhotoRequest(
-                    request.query,
-                    request.section,
-                    request.includeViral
+            //Starts searching for images
+            args.request.run {
+                viewModel.searchImages(
+                    PhotoRequest(
+                        query,
+                        section,
+                        includeViral
+                    )
                 )
-            )
+            }
         }
     }
 
     override fun setupView(view: View) {
-        observeFilterSelection()
+        initObservers()
         setupList()
         addLoadStateChangeListener()
-        showBackButton()
-        observePhotos()
     }
 
-    private fun observePhotos() {
+    private fun initObservers() {
+        // Observes the searched photo result and apply selected filter before submitting data to recycler view adapter.
         viewModel.photos.observe(viewLifecycleOwner) {
             when (viralSelection) {
                 ViralSelection.ALL -> galleryAdapter.submitData(viewLifecycleOwner.lifecycle, it)
@@ -78,8 +81,20 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
                     })
             }
         }
+
+        // Observes the filter selection updates and refreshes underlying dataset to apply filters.
+        mainViewModel.viral.observe(viewLifecycleOwner) {
+            // Updates the filter selection only if it updated from previous selection.
+            if (it != viralSelection) {
+                viralSelection = it
+                galleryAdapter.refresh()
+            }
+        }
     }
 
+    /**
+     * Initialises the layout-manager, adapter and item click actions.
+     */
     private fun setupList() {
         galleryAdapter = GalleryAdapter(viewLifecycleOwner.lifecycle)
 
@@ -97,7 +112,7 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         }
 
         galleryAdapter.onItemClick = { imageData ->
-            findNavController().navigate(
+            findNavController().navigateWithAnim(
                 GalleryFragmentDirections.actionGalleryFragmentToDetailFragment(
                     imageData.title, imageData
                 )
@@ -105,15 +120,9 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         }
     }
 
-    private fun observeFilterSelection() {
-        mainViewModel.viral.observe(viewLifecycleOwner, {
-            if (it != viralSelection) {
-                viralSelection = it
-                galleryAdapter.refresh()
-            }
-        })
-    }
-
+    /**
+     * Listens to load state changes.
+     */
     private fun addLoadStateChangeListener() {
         galleryAdapter.addLoadStateListener { loadState ->
 
@@ -127,8 +136,7 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
                     } else {
                         mainViewModel.showCategories(true)
                         imageList.show()
-                        noImages.hide()
-                        internetError.hide()
+                        ViewUtil.hideView(noImages, internetError)
                     }
                 }
                 // Showing progress for load
@@ -155,6 +163,7 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
     }
 
     override fun onDestroyView() {
+        imageList.adapter = null
         super.onDestroyView()
         //Hide filter categories
         mainViewModel.showCategories(false)

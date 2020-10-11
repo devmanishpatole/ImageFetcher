@@ -40,7 +40,7 @@
             tools:text="200" />
 
         <TextView
-            android:id="@+id/score"
+            android:id="@+id/scoreText"
             style="@style/WrapContentLayout"
             android:layout_below="@id/detailImage"
             android:layout_marginStart="@dimen/spacing_medium"
@@ -53,9 +53,9 @@
             tools:text="200" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/descriptionText"
             style="@style/WrapContentLayout"
-            android:layout_below="@id/score"
+            android:layout_below="@id/scoreText"
             android:layout_marginTop="@dimen/spacing_medium"
             android:drawablePadding="@dimen/spacing_small"
             android:fontFamily="@font/poppin_font"
