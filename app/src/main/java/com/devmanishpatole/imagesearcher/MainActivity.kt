@@ -1,7 +1,6 @@
 package com.devmanishpatole.imagesearcher
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -53,6 +52,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
             }
         }
 
+        viewModel.resetViral.observe(this, {
+            all.isChecked = true
+        })
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostContainer) as NavHostFragment
         navController = navHostFragment.findNavController()
@@ -61,6 +64,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }

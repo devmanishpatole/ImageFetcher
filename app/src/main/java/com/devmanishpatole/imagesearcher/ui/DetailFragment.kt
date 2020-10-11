@@ -37,7 +37,7 @@ class DetailFragment : BaseFragment<DetailViewModel>() {
             it
         } ?: run {
             if (imageData.images?.isNotEmpty() == true) {
-                imageData.images?.get(0).description
+                imageData.images?.get(0)?.description
             } else ""
         }
 

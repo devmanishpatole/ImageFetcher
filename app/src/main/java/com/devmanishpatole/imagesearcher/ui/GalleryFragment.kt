@@ -43,6 +43,8 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         super.onCreate(savedInstanceState)
 
         if (null == savedInstanceState) {
+            mainViewModel.resetViralSelection()
+
             val request = args.request
             viewModel.searchImages(
                 PhotoRequest(
