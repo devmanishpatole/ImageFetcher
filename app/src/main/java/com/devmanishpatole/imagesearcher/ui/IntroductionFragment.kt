@@ -5,7 +5,6 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devmanishpatole.imagesearcher.R
@@ -13,7 +12,6 @@ import com.devmanishpatole.imagesearcher.base.BaseFragment
 import com.devmanishpatole.imagesearcher.data.PhotoRequest
 import com.devmanishpatole.imagesearcher.data.Section
 import com.devmanishpatole.imagesearcher.viewmodel.IntroductionViewModel
-import com.devmanishpatole.imagesearcher.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_intoduction.*
 
@@ -41,7 +39,6 @@ class IntroductionFragment : BaseFragment<IntroductionViewModel>(), View.OnClick
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     searchView.clearFocus()
-//                    this@GalleryFragment.query = query
                     launchSearchImage(query)
                 }
                 return true
@@ -57,16 +54,17 @@ class IntroductionFragment : BaseFragment<IntroductionViewModel>(), View.OnClick
         val action = when (view?.id) {
             R.id.hotImages -> {
                 IntroductionFragmentDirections.actionIntroductionFragmentToGalleryFragment(
-                    PhotoRequest(section = Section.HOT)
+                    getString(R.string.hot_images), PhotoRequest(section = Section.HOT)
                 )
             }
             R.id.topImages -> {
                 IntroductionFragmentDirections.actionIntroductionFragmentToGalleryFragment(
-                    PhotoRequest(section = Section.TOP)
+                    getString(R.string.top_images), PhotoRequest(section = Section.TOP)
                 )
             }
             R.id.userImages -> {
                 IntroductionFragmentDirections.actionIntroductionFragmentToGalleryFragment(
+                    getString(R.string.user_images),
                     PhotoRequest(section = Section.USER, includeViral = checkViral.isChecked)
                 )
             }
@@ -77,14 +75,13 @@ class IntroductionFragment : BaseFragment<IntroductionViewModel>(), View.OnClick
 
     private fun launchSearchImage(query: String) {
         val action = IntroductionFragmentDirections.actionIntroductionFragmentToGalleryFragment(
-            PhotoRequest(query)
+            query, PhotoRequest(query)
         )
         findNavController().navigate(action)
     }
 
     override fun onResume() {
         super.onResume()
-        activity?.title = getString(R.string.app_name)
         //Hide back arrow
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }

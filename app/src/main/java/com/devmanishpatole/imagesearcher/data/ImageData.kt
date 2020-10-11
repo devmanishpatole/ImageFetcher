@@ -24,5 +24,6 @@ data class Image(
     @SerializedName("id")
     val imageId: String,
     @SerializedName("link")
-    val imageLink: String
+    val imageLink: String,
+    val description: String?
 ) : Parcelable

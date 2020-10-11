@@ -3,6 +3,11 @@ package com.devmanishpatole.imagesearcher
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.devmanishpatole.imagesearcher.base.BaseActivity
 import com.devmanishpatole.imagesearcher.data.ViralSelection
 import com.devmanishpatole.imagesearcher.util.hide
@@ -15,6 +20,8 @@ import kotlinx.android.synthetic.main.categories.*
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<MainViewModel>() {
+
+    private lateinit var navController: NavController
 
     override val viewModel by viewModels<MainViewModel>()
 
@@ -46,12 +53,15 @@ class MainActivity : BaseActivity<MainViewModel>() {
             }
         }
 
-    }
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navHostContainer) as NavHostFragment
+        navController = navHostFragment.findNavController()
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> onBackPressed()
-        }
-        return super.onOptionsItemSelected(item)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

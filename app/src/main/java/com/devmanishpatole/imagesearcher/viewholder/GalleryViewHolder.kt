@@ -32,13 +32,16 @@ class GalleryViewHolder(parent: ViewGroup, private val onItemClick: (Int) -> Uni
         super.bind(data)
 
         with(itemView) {
-            imageView.load(data.images?.get(0)?.imageLink) {
-                placeholder(R.drawable.placeholder)
-                error(R.drawable.image_not_available)
-                scale(coil.size.Scale.FIT)
+            if (data.images?.isNotEmpty() == true) {
+                imageView.load(data.images[0].imageLink) {
+                    placeholder(R.drawable.placeholder)
+                    error(R.drawable.image_not_available)
+                    scale(coil.size.Scale.FIT)
+                }
+            } else {
+                imageView.load(R.drawable.image_not_available)
             }
-
-            imageTitle.text = data.isViral.toString()
+            imageTitle.text = data.title
 
             itemView.setOnClickListener {
                 if (layoutPosition != RecyclerView.NO_POSITION) {

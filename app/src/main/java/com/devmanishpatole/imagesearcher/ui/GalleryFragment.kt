@@ -1,9 +1,7 @@
 package com.devmanishpatole.imagesearcher.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,7 +14,6 @@ import com.devmanishpatole.imagesearcher.adapter.GalleryAdapter
 import com.devmanishpatole.imagesearcher.adapter.GalleryLoadStateAdapter
 import com.devmanishpatole.imagesearcher.base.BaseFragment
 import com.devmanishpatole.imagesearcher.data.PhotoRequest
-import com.devmanishpatole.imagesearcher.data.Section
 import com.devmanishpatole.imagesearcher.data.ViralSelection
 import com.devmanishpatole.imagesearcher.exception.NetworkException
 import com.devmanishpatole.imagesearcher.util.hide
@@ -58,12 +55,10 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
     }
 
     override fun setupView(view: View) {
-        mainViewModel.showCategories(true)
         observeFilterSelection()
         setupList()
         addLoadStateChangeListener()
         showBackButton()
-        setupTitle(args.request)
         observePhotos()
     }
 
@@ -102,7 +97,7 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         galleryAdapter.onItemClick = { imageData ->
             findNavController().navigate(
                 GalleryFragmentDirections.actionGalleryFragmentToDetailFragment(
-                    imageData
+                    imageData.title, imageData
                 )
             )
         }
@@ -117,20 +112,6 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         })
     }
 
-    private fun setupTitle(request: PhotoRequest) {
-        activity?.title = if (request.query.isNotEmpty()) {
-            request.query
-        } else {
-            when (request.section) {
-                Section.HOT -> getString(R.string.hot_images)
-                Section.TOP -> getString(R.string.top_images)
-                Section.USER -> getString(R.string.user_images)
-                else -> getString(R.string.hot_images)
-            }
-        }
-    }
-
-
     private fun addLoadStateChangeListener() {
         galleryAdapter.addLoadStateListener { loadState ->
 
@@ -142,6 +123,7 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
                         noImages.show()
                         imageList.hide()
                     } else {
+                        mainViewModel.showCategories(true)
                         imageList.show()
                         noImages.hide()
                         internetError.hide()

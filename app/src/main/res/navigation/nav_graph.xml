@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/introductionFragment"
         android:name="com.devmanishpatole.imagesearcher.ui.IntroductionFragment"
-        android:label="IntroductionFragment">
+        android:label="Image Fetcher">
         <action
             android:id="@+id/action_introductionFragment_to_galleryFragment"
             app:destination="@id/galleryFragment"
@@ -18,8 +18,11 @@
     <fragment
         android:id="@+id/galleryFragment"
         android:name="com.devmanishpatole.imagesearcher.ui.GalleryFragment"
-        android:label="fragment_gallery"
+        android:label="{title}"
         tools:layout="@layout/fragment_gallery">
+        <argument
+            android:name="title"
+            app:argType="string" />
         <argument
             android:name="request"
             app:argType="com.devmanishpatole.imagesearcher.data.PhotoRequest" />
@@ -31,8 +34,11 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.devmanishpatole.imagesearcher.ui.DetailFragment"
-        android:label="fragment_detail"
+        android:label="{title}"
         tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="title"
+            app:argType="string" />
         <argument
             android:name="imageData"
             app:argType="com.devmanishpatole.imagesearcher.data.ImageData" />
