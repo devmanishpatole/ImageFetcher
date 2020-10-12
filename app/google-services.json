@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "110957870668",
+    "firebase_url": "https://imagefetcher-2d5cf.firebaseio.com",
+    "project_id": "imagefetcher-2d5cf",
+    "storage_bucket": "imagefetcher-2d5cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110957870668:android:a6b472da08d2a1a4e8fee9",
+        "android_client_info": {
+          "package_name": "com.devmanishpatole.imagesearcher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110957870668-qvaifojhtppdq34u1r4sfrkjei7lgq0t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsVFAj9FpVFtRlNo2mNza7mabiE9TJNTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110957870668-qvaifojhtppdq34u1r4sfrkjei7lgq0t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

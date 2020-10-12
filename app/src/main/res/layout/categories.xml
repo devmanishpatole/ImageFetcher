@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/categories"
+        style="@style/SectionLayout"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_small"
+        android:visibility="gone"
+        app:layout_scrollFlags="scroll|enterAlways"
+        tools:visibility="visible">
+
+        <TextView
+            style="@style/WrapContentLayout"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:fontFamily="@font/poppin_font"
+            android:gravity="center"
+            android:text="@string/select_filter"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_medium" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:background="@android:color/darker_gray" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/categoryGroup"
+            style="@style/WrapContentLayout"
+            app:chipSpacing="@dimen/spacing_extra_small"
+            app:singleLine="false"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/all"
+                style="@style/Widget.MaterialComponents.Chip.Choice.Wrap"
+                android:checked="true"
+                android:text="@string/all" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/viral"
+                style="@style/Widget.MaterialComponents.Chip.Choice.Wrap"
+                android:text="@string/viral" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/nonViral"
+                style="@style/Widget.MaterialComponents.Chip.Choice.Wrap"
+                android:text="@string/non_viral" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </LinearLayout>
+</merge>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/introductionFragment">
+
+    <fragment
+        android:id="@+id/introductionFragment"
+        android:name="com.devmanishpatole.imagesearcher.gallery.home.ui.IntroductionFragment"
+        android:label="Image Fetcher">
+        <action
+            android:id="@+id/action_introductionFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment"
+            app:launchSingleTop="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.devmanishpatole.imagesearcher.gallery.list.ui.GalleryFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_gallery">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="request"
+            app:argType="com.devmanishpatole.imagesearcher.model.PhotoRequest" />
+        <action
+            android:id="@+id/action_galleryFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.devmanishpatole.imagesearcher.gallery.detail.ui.DetailFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="imageData"
+            app:argType="com.devmanishpatole.imagesearcher.model.ImageData" />
+    </fragment>
+
+</navigation>

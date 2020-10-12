@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParentLayout"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_small"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:id="@+id/intro"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/welcome_background"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/WrapContentLayout"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/welcome"
+            android:textSize="@dimen/text_extra_large" />
+
+        <TextView
+            style="@style/WrapContentLayout"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:paddingStart="@dimen/spacing_medium"
+            android:paddingEnd="@dimen/spacing_medium"
+            android:text="@string/welcome_message" />
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/SectionLayout"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/sections"
+        android:textSize="@dimen/text_large" />
+
+    <TextView
+        style="@style/SectionLayout"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@drawable/hot_background"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:padding="@dimen/spacing_medium"
+        android:text="@string/hot_images"
+        android:textSize="@dimen/text_medium" />
+
+    <TextView
+        style="@style/SectionLayout"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@drawable/top_background"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:padding="@dimen/spacing_medium"
+        android:text="@string/top_images"
+        android:textSize="@dimen/text_medium" />
+
+    <TextView
+        style="@style/SectionLayout"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@drawable/user_background"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:padding="@dimen/spacing_medium"
+        android:text="@string/user_images"
+        android:textSize="@dimen/text_medium" />
+
+    <CheckBox
+        android:id="@+id/checkAccountDetails"
+        style="@style/SectionLayout"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:button="@drawable/viral_checkbox_selector"
+        android:checked="false"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:layoutDirection="rtl"
+        android:padding="@dimen/spacing_medium"
+        android:text="@string/include_viral"
+        android:textSize="@dimen/text_medium" />
+
+
+</LinearLayout>
