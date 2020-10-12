@@ -8,9 +8,9 @@
 
 
 ## About
-It simply searches images. You can choose image categories from different section or you can enter search string to find the right image for you. It loads searched **Images** data from [Imgur API](https://apidocs.imgur.com/?version=latest) and displays in a Grid format.
-The user can tap on the image which opens the next screen where user can see total likes, dislikes, score and description associated with that image.
-Application supports lazy loading of images so users can have seamless data loading experience. User can also apply filter to include viral and non-viral images.
+It simply searches images. You can choose image categories from different sections or you can enter a search string to find the right image for you. It loads searched **Images** data from [Imgur API](https://apidocs.imgur.com/?version=latest) and displays in a Grid format.
+The user can tap on the image which opens the next screen where users can see total likes, dislikes, scores, and descriptions associated with that image.
+The application supports the lazy loading of images so users can have a seamless data loading experience. Users can also apply filters to include viral and non-viral images.
 **Implemented Lifecycle aware view holder for image list which respects the lifecycle of row's view components.**
 
 
@@ -28,6 +28,7 @@ Application supports lazy loading of images so users can have seamless data load
     - [Hilt-ViewModel](https://developer.android.com/training/dependency-injection/hilt-jetpack) - DI for injecting `ViewModel`.
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
+- [Coil](https://coil-kt.github.io/coil/) - An image loading library for Android backed by Kotlin Coroutines.
 - [Lottie](https://airbnb.io/lottie/#/) - Animation library for Kotlin.
 - [MockK](https://mockk.io/) - Mocking library for Kotlin.
 
