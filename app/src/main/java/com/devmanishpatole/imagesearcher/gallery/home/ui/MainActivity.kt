@@ -2,6 +2,7 @@ package com.devmanishpatole.imagesearcher.gallery.home.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -9,10 +10,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.devmanishpatole.imagesearcher.R
 import com.devmanishpatole.imagesearcher.base.BaseActivity
+import com.devmanishpatole.imagesearcher.gallery.home.viewmodel.MainViewModel
 import com.devmanishpatole.imagesearcher.model.ViralSelection
 import com.devmanishpatole.imagesearcher.util.hide
 import com.devmanishpatole.imagesearcher.util.show
-import com.devmanishpatole.imagesearcher.gallery.home.viewmodel.MainViewModel
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,9 +37,9 @@ class MainActivity : BaseActivity<MainViewModel>() {
     private fun initObservers() {
         // Displays search filter categories
         viewModel.showCategories.observe(this, { showCategories ->
-            if (showCategories) {
+            if (showCategories && !categories.isVisible) {
                 categories.show()
-            } else {
+            } else if (categories.isVisible) {
                 categories.hide()
             }
         })

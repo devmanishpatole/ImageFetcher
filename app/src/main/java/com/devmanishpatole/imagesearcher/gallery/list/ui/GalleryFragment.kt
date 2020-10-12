@@ -112,6 +112,8 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
         }
 
         galleryAdapter.onItemClick = { imageData ->
+            //Hide filter categories
+            mainViewModel.showCategories(false)
             findNavController().navigateWithAnim(
                 GalleryFragmentDirections.actionGalleryFragmentToDetailFragment(
                     imageData.title, imageData
