@@ -1,7 +1,5 @@
 package com.devmanishpatole.imagesearcher.util
 
-import com.devmanishpatole.alzuraapplication.util.Status
-
 
 data class Result<out T> private constructor(val status: Status, val data: T?) {
 

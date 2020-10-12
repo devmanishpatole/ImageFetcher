@@ -1,4 +1,4 @@
-package com.devmanishpatole.alzuraapplication.util
+package com.devmanishpatole.imagesearcher.util
 
 enum class Status {
     SUCCESS,
