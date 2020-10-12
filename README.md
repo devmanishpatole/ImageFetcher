@@ -44,13 +44,13 @@ This due separation of moving parts makes the app more testable with unit tests.
 
 ## Quality -
 To make sure the application is up to the mark used below tools:
-- [LeakCanary](https://square.github.io/leakcanary/) - LeakCanary is a memory leak detection library for Android.
-- [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - StrictMode is a developer tool that detects things you might be doing by accident and brings them to your attention so you can fix them.
-- [Firebase Test Lab ](https://firebase.google.com/docs/test-lab) - Firebase Test Lab is a cloud-based app-testing infrastructure.
+* [LeakCanary](https://square.github.io/leakcanary/) - LeakCanary is a memory leak detection library for Android.
+* [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - StrictMode is a developer tool that detects things you might be doing by accident and brings them to your attention so you can fix them.
+* [Firebase Test Lab ](https://firebase.google.com/docs/test-lab) - Firebase Test Lab is a cloud-based app-testing infrastructure.
 
 After release to track the crashes and performance monitoring integrated following libraries:
-- [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics) - Firebase Crashlytics is a lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality.
-- [Firebase Performance Monitoring](https://firebase.google.com/docs/perf-mon) - Gain insight into your app's performance issues.
+* [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics) - Firebase Crashlytics is a lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality.
+* [Firebase Performance Monitoring](https://firebase.google.com/docs/perf-mon) - Gain insight into your app's performance issues.
 
 ## Static code analysis -
 Used [Sonar Lint](https://www.sonarlint.org/) static code analysis.
