@@ -4,7 +4,10 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.firebase.firebase-perf'
 }
 
 android {
@@ -103,8 +106,10 @@ dependencies {
     // Coil
     implementation "io.coil-kt:coil:$coil_vsersion"
 
-    // Data store
-    implementation "androidx.datastore:datastore-preferences:$data_store_version"
+    // Firebase
+    implementation "com.google.firebase:firebase-crashlytics:$crashlytic_version"
+    implementation "com.google.firebase:firebase-analytics:$analytic_version"
+    implementation "com.google.firebase:firebase-perf:$performace_version"
 
     // Testing
     testImplementation "junit:junit:$junit_version"
