@@ -10,18 +10,18 @@ import androidx.paging.LoadState
 import androidx.paging.filter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.devmanishpatole.imagesearcher.R
+import com.devmanishpatole.imagesearcher.base.BaseFragment
+import com.devmanishpatole.imagesearcher.exception.NetworkException
+import com.devmanishpatole.imagesearcher.gallery.home.viewmodel.MainViewModel
 import com.devmanishpatole.imagesearcher.gallery.list.adapter.GalleryAdapter
 import com.devmanishpatole.imagesearcher.gallery.list.adapter.GalleryLoadStateAdapter
-import com.devmanishpatole.imagesearcher.base.BaseFragment
+import com.devmanishpatole.imagesearcher.gallery.list.viewmodel.GalleryViewModel
+import com.devmanishpatole.imagesearcher.model.PhotoRequest
 import com.devmanishpatole.imagesearcher.model.ViralSelection
-import com.devmanishpatole.imagesearcher.exception.NetworkException
 import com.devmanishpatole.imagesearcher.util.ViewUtil
 import com.devmanishpatole.imagesearcher.util.hide
 import com.devmanishpatole.imagesearcher.util.navigateWithAnim
 import com.devmanishpatole.imagesearcher.util.show
-import com.devmanishpatole.imagesearcher.gallery.list.viewmodel.GalleryViewModel
-import com.devmanishpatole.imagesearcher.gallery.home.viewmodel.MainViewModel
-import com.devmanishpatole.imagesearcher.model.PhotoRequest
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_gallery.*
 

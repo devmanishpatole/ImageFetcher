@@ -2,8 +2,8 @@ package com.devmanishpatole.imagesearcher.di
 
 import android.content.Context
 import com.devmanishpatole.imagesearcher.BuildConfig
-import com.devmanishpatole.imagesearcher.network.Networking
 import com.devmanishpatole.imagesearcher.gallery.list.service.ImgurService
+import com.devmanishpatole.imagesearcher.network.Networking
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -8,10 +8,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devmanishpatole.imagesearcher.R
 import com.devmanishpatole.imagesearcher.base.BaseFragment
+import com.devmanishpatole.imagesearcher.gallery.home.viewmodel.IntroductionViewModel
 import com.devmanishpatole.imagesearcher.model.PhotoRequest
 import com.devmanishpatole.imagesearcher.model.Section
 import com.devmanishpatole.imagesearcher.util.navigateWithAnim
-import com.devmanishpatole.imagesearcher.gallery.home.viewmodel.IntroductionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_intoduction.*
 

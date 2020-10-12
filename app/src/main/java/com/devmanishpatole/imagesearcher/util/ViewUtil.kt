@@ -4,14 +4,14 @@ import android.view.View
 
 object ViewUtil {
 
-    fun hideView(vararg views : View){
-        for(view in views){
+    fun hideView(vararg views: View) {
+        for (view in views) {
             view.hide()
         }
     }
 
-    fun showView(vararg views : View){
-        for(view in views){
+    fun showView(vararg views: View) {
+        for (view in views) {
             view.show()
         }
     }

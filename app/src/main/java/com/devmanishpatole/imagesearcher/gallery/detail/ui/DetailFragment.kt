@@ -36,12 +36,12 @@ class DetailFragment : BaseFragment<DetailViewModel>() {
 
             descriptionText.text = description ?: run {
                 if (images?.isNotEmpty() == true) {
-                    images?.get(0)?.description
+                    images[0].description
                 } else ""
             }
 
             if (images?.isNotEmpty() == true) {
-                detailImage.load(images?.get(0)?.imageLink) {
+                detailImage.load(images[0].imageLink) {
                     context?.let { BlurTransformation(it) }
                     scale(coil.size.Scale.FIT)
                     target(object : coil.target.Target {

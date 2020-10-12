@@ -4,8 +4,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DiffUtil
 import com.devmanishpatole.imagesearcher.base.BasePagingAdapter
-import com.devmanishpatole.imagesearcher.model.ImageData
 import com.devmanishpatole.imagesearcher.gallery.list.viewholder.GalleryViewHolder
+import com.devmanishpatole.imagesearcher.model.ImageData
 
 class GalleryAdapter(parentLifecycle: Lifecycle) :
     BasePagingAdapter<ImageData, GalleryViewHolder>(parentLifecycle, IMAGE_COMPARATOR) {
