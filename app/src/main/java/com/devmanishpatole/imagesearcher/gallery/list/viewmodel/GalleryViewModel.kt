@@ -3,6 +3,7 @@ package com.devmanishpatole.imagesearcher.gallery.list.viewmodel
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -17,7 +18,7 @@ class GalleryViewModel @ViewModelInject constructor(
 
     private val currentQuery = state.getLiveData(RESTORED_REQUEST, PhotoRequest())
 
-    val photos = currentQuery.switchMap { request ->
+    val photos = currentQuery.distinctUntilChanged().switchMap { request ->
         repository.getImages(PhotoRequest(request.query, request.section, request.includeViral))
             .cachedIn(viewModelScope)
     }

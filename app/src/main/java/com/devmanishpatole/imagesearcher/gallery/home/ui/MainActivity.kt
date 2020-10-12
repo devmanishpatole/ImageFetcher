@@ -2,7 +2,6 @@ package com.devmanishpatole.imagesearcher.gallery.home.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -37,9 +36,9 @@ class MainActivity : BaseActivity<MainViewModel>() {
     private fun initObservers() {
         // Displays search filter categories
         viewModel.showCategories.observe(this, { showCategories ->
-            if (showCategories && !categories.isVisible) {
+            if (showCategories) {
                 categories.show()
-            } else if (categories.isVisible) {
+            } else {
                 categories.hide()
             }
         })

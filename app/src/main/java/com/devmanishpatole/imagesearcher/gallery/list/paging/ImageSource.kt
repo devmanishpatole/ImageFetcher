@@ -1,11 +1,14 @@
 package com.devmanishpatole.imagesearcher.gallery.list.paging
 
 import com.devmanishpatole.imagesearcher.base.BaseDataSource
-import com.devmanishpatole.imagesearcher.model.ImageData
-import com.devmanishpatole.imagesearcher.model.PhotoRequest
 import com.devmanishpatole.imagesearcher.exception.NetworkException
 import com.devmanishpatole.imagesearcher.gallery.list.service.ImgurService
+import com.devmanishpatole.imagesearcher.model.ImageData
+import com.devmanishpatole.imagesearcher.model.ImageWrapper
+import com.devmanishpatole.imagesearcher.model.PhotoRequest
 import com.devmanishpatole.imagesearcher.util.NetworkHelper
+import retrofit2.Response
+import javax.net.ssl.HttpsURLConnection
 
 class ImageSource(
     private val service: ImgurService,
@@ -14,6 +17,7 @@ class ImageSource(
 ) : BaseDataSource<ImageData>() {
 
     override suspend fun loadFromLocalStorage(): List<ImageData>? {
+        // In case local cache implemented
         return null
     }
 
@@ -27,7 +31,7 @@ class ImageSource(
                 service.getSectionImages(request.section.value, request.includeViral, position)
             }
 
-            if (response.isSuccessful) {
+            if (isSuccessful(response)) {
                 results = response.body()?.data
             } else {
                 throw Exception()
@@ -36,6 +40,19 @@ class ImageSource(
             throw NetworkException()
         }
         return results
+    }
+
+    private fun isSuccessful(response: Response<ImageWrapper>): Boolean {
+        var isSuccess = false
+        if (response.isSuccessful) {
+            val result = response.body()
+            result?.let {
+                if (it.success && it.status == HttpsURLConnection.HTTP_OK) {
+                    isSuccess = true
+                }
+            }
+        }
+        return isSuccess
     }
 
     override fun getPreviousKey() =
