@@ -19,12 +19,12 @@ Application supports lazy loading of orders so users can have seamless data load
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous operation.
 - [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) - A cold asynchronous data stream that sequentially emits values and completes normally or with an exception.
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps.
-  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
-  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
-  - [Navigation](https://developer.android.com/guide/navigation) - Navigation allows seamless navigation across app.
-- [Dependency Injection](https://developer.android.com/training/dependency-injection) -
-  - [Hilt-Dagger](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
-  - [Hilt-ViewModel](https://developer.android.com/training/dependency-injection/hilt-jetpack) - DI for injecting `ViewModel`.
+    - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
+    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
+    - [Navigation](https://developer.android.com/guide/navigation) - Navigation allows seamless navigation across app.
+- [Dependency Injection](https://developer.android.com/training/dependency-injection) 
+    - [Hilt-Dagger](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
+    - [Hilt-ViewModel](https://developer.android.com/training/dependency-injection/hilt-jetpack) - DI for injecting `ViewModel`.
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
 - [MockK](https://mockk.io/) - Mocking library for Kotlin.
@@ -44,9 +44,9 @@ This due separation of moving parts makes the app more testable with unit tests.
 
 ## Quality
 To make sure the application is up to the mark used below tools:
-* [LeakCanary](https://square.github.io/leakcanary/) - LeakCanary is a memory leak detection library for Android.
-* [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - StrictMode is a developer tool that detects things you might be doing by accident and brings them to your attention so you can fix them.
-* [Firebase Test Lab](https://firebase.google.com/docs/test-lab) - Firebase Test Lab is a cloud-based app-testing infrastructure.
+- [LeakCanary](https://square.github.io/leakcanary/) - LeakCanary is a memory leak detection library for Android.
+- [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - StrictMode is a developer tool that detects things you might be doing by accident and brings them to your attention so you can fix them.
+- [Firebase Test Lab](https://firebase.google.com/docs/test-lab) - Firebase Test Lab is a cloud-based app-testing infrastructure.
 
 After release to track the crashes and performance monitoring integrated following libraries:
 - [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics) - Firebase Crashlytics is a lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality.
