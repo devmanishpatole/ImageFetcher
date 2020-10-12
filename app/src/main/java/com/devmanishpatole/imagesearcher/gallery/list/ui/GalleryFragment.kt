@@ -141,7 +141,7 @@ class GalleryFragment : BaseFragment<GalleryViewModel>() {
                 }
                 // Showing progress for load
                 is LoadState.Loading -> showProgressbar()
-                // Showing no comics in case of error.
+                // Showing no image in case of error.
                 is LoadState.Error -> {
                     hideProgressbarOrError()
                     noImages.show()

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.devmanishpatole.imagesearcher.R
 import com.devmanishpatole.imagesearcher.base.BaseItemViewHolder
-import com.devmanishpatole.imagesearcher.model.ImageData
 import com.devmanishpatole.imagesearcher.gallery.list.viewmodel.GalleryItemViewModel
+import com.devmanishpatole.imagesearcher.model.ImageData
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
@@ -25,7 +25,7 @@ class GalleryViewHolder(parent: ViewGroup, private val onItemClick: (Int) -> Uni
     override lateinit var viewModel: GalleryItemViewModel
 
     override fun setupView(view: View) {
-
+        // No Implementation
     }
 
     override fun bind(data: ImageData) {
@@ -49,7 +49,6 @@ class GalleryViewHolder(parent: ViewGroup, private val onItemClick: (Int) -> Uni
                 }
             }
         }
-
     }
 
     @InstallIn(FragmentComponent::class)
@@ -58,7 +57,7 @@ class GalleryViewHolder(parent: ViewGroup, private val onItemClick: (Int) -> Uni
         fun galleryItemViewModel(): GalleryItemViewModel
     }
 
-    private fun getComicItemViewModel(fragment: Fragment): GalleryItemViewModel {
+    private fun getImageItemViewModel(fragment: Fragment): GalleryItemViewModel {
         val hiltEntryPoint = EntryPointAccessors.fromFragment(
             fragment, ProviderGalleryItemViewModel::class.java
         )
@@ -68,7 +67,7 @@ class GalleryViewHolder(parent: ViewGroup, private val onItemClick: (Int) -> Uni
     override fun injectDependency() {
         lifecycleRegistry = LifecycleRegistry(this)
         viewModel =
-            getComicItemViewModel((itemView.context as ViewComponentManager.FragmentContextWrapper).fragment)
+            getImageItemViewModel((itemView.context as ViewComponentManager.FragmentContextWrapper).fragment)
     }
 
 }
