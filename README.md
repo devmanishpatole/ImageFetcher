@@ -1,45 +1,92 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+![photo](media/image_fetcher.png)
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+# Image Fetcher Application
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
 
----
+**Image Fetcher** is a sample Android application, built to demonstrate use of *Modern Android development* tools.
 
-## Edit a file
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+## About
+It simply searches images. You can choose image categories from different section or you can enter search string to find the right image for you. It loads searched **Images** data from [Imgur API](https://apidocs.imgur.com/?version=latest) and displays in a Grid format.
+The user can tap on the image which opens the next screen where user can see total likes, dislikes, score and description associated with that image.
+Application supports lazy loading of orders so users can have seamless data loading experience. User can also apply filter to include viral and non-viral images.
+**Implemented Lifecycle aware view holder for order list which respects the lifecycle of row's view components.**
 
----
 
-## Create a file
+## Built With 
+- [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
+- [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous operation.
+- [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) - A cold asynchronous data stream that sequentially emits values and completes normally or with an exception.
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps.
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
+  - [Navigation](https://developer.android.com/guide/navigation) - Navigation allows seamless navigation across app.
+- [Dependency Injection](https://developer.android.com/training/dependency-injection) -
+  - [Hilt-Dagger](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
+  - [Hilt-ViewModel](https://developer.android.com/training/dependency-injection/hilt-jetpack) - DI for injecting `ViewModel`.
+- [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
+- [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
+- [MockK](https://mockk.io/) - Mocking library for Kotlin.
+- [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - The Paging Library helps you load and display pages of data from a larger dataset from local storage or over the network.
+- [Lottie](https://airbnb.io/lottie/#/) - Animation library for Kotlin.
 
-Next, you’ll add a new file to this repository.
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+## Architecture
+This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
+![photo](media/arch.png)
 
----
+The philosophy behind this architecture is to enable separation of concerns and ultimately a very modular application.
+This architecture was chosen because it provides the opportunity to separate concerns and implement "SOLID" principles which makes the application more robust and the code base scalable and maintainable.
 
-## Clone a repository
+This due separation of moving parts makes the app more testable with unit tests.
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+## Quality -
+To make sure the application is up to the mark used below tools:
+- [LeakCanary](https://square.github.io/leakcanary/) - LeakCanary is a memory leak detection library for Android.
+- [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - StrictMode is a developer tool that detects things you might be doing by accident and brings them to your attention so you can fix them.
+- [Firebase Test Lab ](https://firebase.google.com/docs/test-lab) - Firebase Test Lab is a cloud-based app-testing infrastructure.
 
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
+After release to track the crashes and performance monitoring integrated following libraries:
+- [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics) - Firebase Crashlytics is a lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality.
+- [Firebase Performance Monitoring](https://firebase.google.com/docs/perf-mon) - Gain insight into your app's performance issues.
 
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+## Static code analysis -
+Used [Sonar Lint](https://www.sonarlint.org/) static code analysis.
+
+
+## Contribute
+If you want to contribute to this library, you're always welcome!
+
+
+## Contact
+If you need any help, you can connect with me.
+
+Visit:- [devmanishpatole.com](https://www.devmanishpatole.com/)
+
+## License
+
+```
+MIT License
+
+Copyright (c) 2020 Manish Patole
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
