@@ -10,8 +10,8 @@
 ## About
 It simply searches images. You can choose image categories from different section or you can enter search string to find the right image for you. It loads searched **Images** data from [Imgur API](https://apidocs.imgur.com/?version=latest) and displays in a Grid format.
 The user can tap on the image which opens the next screen where user can see total likes, dislikes, score and description associated with that image.
-Application supports lazy loading of orders so users can have seamless data loading experience. User can also apply filter to include viral and non-viral images.
-**Implemented Lifecycle aware view holder for order list which respects the lifecycle of row's view components.**
+Application supports lazy loading of images so users can have seamless data loading experience. User can also apply filter to include viral and non-viral images.
+**Implemented Lifecycle aware view holder for image list which respects the lifecycle of row's view components.**
 
 
 ## Built With 
@@ -22,18 +22,20 @@ Application supports lazy loading of orders so users can have seamless data load
     - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
     - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
     - [Navigation](https://developer.android.com/guide/navigation) - Navigation allows seamless navigation across app.
+    - [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - The Paging Library helps you load and display pages of data from a larger dataset from local storage or over the network.
 - [Dependency Injection](https://developer.android.com/training/dependency-injection) 
     - [Hilt-Dagger](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
     - [Hilt-ViewModel](https://developer.android.com/training/dependency-injection/hilt-jetpack) - DI for injecting `ViewModel`.
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
-- [MockK](https://mockk.io/) - Mocking library for Kotlin.
-- [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - The Paging Library helps you load and display pages of data from a larger dataset from local storage or over the network.
 - [Lottie](https://airbnb.io/lottie/#/) - Animation library for Kotlin.
+- [MockK](https://mockk.io/) - Mocking library for Kotlin.
+
 
 
 ## Architecture
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
+
 ![photo](media/arch.png)
 
 The philosophy behind this architecture is to enable separation of concerns and ultimately a very modular application.
