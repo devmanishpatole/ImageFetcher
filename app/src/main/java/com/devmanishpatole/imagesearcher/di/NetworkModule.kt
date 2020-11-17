@@ -22,9 +22,7 @@ object NetworkModule {
     private const val AUTHORIZATION = "Authorization"
     private const val AUTHORIZATION_VALUE = "Client-ID 86793b5df56e115"
 
-    @Provides
-    @Singleton
-    fun provideAuthenticatorInterceptor() = object : Interceptor {
+    private fun getAuthenticatorInterceptor() = object : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val original = chain.request()
             val request = original.newBuilder()
@@ -37,9 +35,7 @@ object NetworkModule {
         }
     }
 
-    @Provides
-    @Singleton
-    fun provideLoggingInterceptor() = HttpLoggingInterceptor()
+    private fun getLoggingInterceptor() = HttpLoggingInterceptor()
         .apply {
             level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
             else HttpLoggingInterceptor.Level.NONE
@@ -48,16 +44,14 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideNetwork(
-        @ApplicationContext appContext: Context,
-        loggingInterceptor: HttpLoggingInterceptor,
-        interceptor: Interceptor
+        @ApplicationContext appContext: Context
     ): Retrofit =
         Networking.create(
             BuildConfig.BASE_URL,
             appContext.cacheDir,
             10 * 1024 * 1024, // 10MB
-            loggingInterceptor,
-            interceptor
+            getLoggingInterceptor(),
+            getAuthenticatorInterceptor()
         )
 
     @Provides
