@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 
 abstract class BaseItemViewModel<T> : BaseViewModel() {
 
-    private val _data = MutableLiveData<T>()
+    protected val _data = MutableLiveData<T>()
     val data: LiveData<T>
         get() = _data
 
